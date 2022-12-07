@@ -1,0 +1,78 @@
+﻿@model IEnumerable<WebTestAppBank.Models.Casset>
+
+@{
+    ViewData["Title"] = "Cassets";
+}
+
+<h1>Cassets</h1>
+
+<div id="modDialog" class="modal fade" >
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                №
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sum)
+            </th>
+            <th>
+                Change State
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.ActionLink((item.ID + 1).ToString(), "Info", "Cassets", new { cassetId = item.ID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sum)
+            </td>
+            @{
+                if (item.IsActive)
+                {
+                    <td>
+                        @Html.ActionLink("Disable", "SetActiveState", "Cassets", new { cassetId = item.ID })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Active", "SetActiveState", "Cassets", new { cassetId = item.ID })
+                    </td>
+                }
+            }
+            <td>
+                @Html.ActionLink("Show Nominals", "ShowNominals", "Cassets", new { cassetId = item.ID }, new { @class = "cassetNominals" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section scripts
+{
+<script type="text/javascript">
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $(".cassetNominals").click(function (e) {
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#dialogContent').html(data);
+                $('#modDialog').modal('show');
+            });
+        });
+    });
+</script>
+}

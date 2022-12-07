@@ -1,0 +1,34 @@
+﻿@model Dictionary<int, int>
+@{
+    ViewData["Title"] = "NeedNominals";
+}
+
+<h1>NeedNominals</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Banknote
+            </th>
+            <th>
+                Values
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelKey => item.Key)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelValue => item.Value)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>Calculation time: @ViewBag.CalcTime мс.</p>
+

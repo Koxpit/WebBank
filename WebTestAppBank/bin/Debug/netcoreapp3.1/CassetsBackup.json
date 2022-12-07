@@ -1,0 +1,30 @@
+[
+  {
+    "ID": 0,
+    "Nominals": {
+      "2000": 3
+    },
+    "IsActive": true,
+    "Sum": 6000
+  },
+  {
+    "ID": 1,
+    "Nominals": {
+      "5000": 1
+    },
+    "IsActive": true,
+    "Sum": 5000
+  },
+  {
+    "ID": 2,
+    "Nominals": {},
+    "IsActive": true,
+    "Sum": 0
+  },
+  {
+    "ID": 3,
+    "Nominals": {},
+    "IsActive": true,
+    "Sum": 0
+  }
+]

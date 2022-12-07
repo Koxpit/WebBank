@@ -1,0 +1,41 @@
+﻿@model WebTestAppBank.Models.Casset
+
+@{
+    ViewData["Title"] = "AddNominal";
+}
+
+<h1>AddNominal</h1>
+@{ int ID = Model.ID+1; }
+<h4>Casset №@ID</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddNominal">
+            <div class="form-group">
+                <input type="hidden" value="@Model.ID" name="cassetId" />
+                <p>Banknote: </p>
+                <select name="banknote">
+                    @foreach (int banknote in ViewBag.Banknotes)
+                    {
+                        <option value="@banknote">@banknote</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <p>Value: </p>
+                <input name="value" type="number" min="1" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="ATM" asp-action="Cassets">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

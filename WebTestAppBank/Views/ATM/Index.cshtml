@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div>
+        <div class="text-center">
+            <h1 class="display-4">Welcome To ATM</h1>
+        </div>
+        <div>
+            @using (Html.BeginForm("Cassets", "ATM", FormMethod.Post))
+            {
+            <div>
+                <p>Enter value of cassets.</p>
+                <select id="valCassets" name="valCassets">
+                    @for (int i = 1; i <= 8; i++)
+                    {
+                    <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <div>
+                <p>
+                    <input type="submit" value="Create" />
+                </p>
+            </div>
+            }
+        </div>
+    </div>

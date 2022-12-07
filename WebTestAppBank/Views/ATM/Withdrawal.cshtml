@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Withdrawal";
+}
+
+<div>
+    <div class="text-left">
+        <h1 class="display-4">Withdrawal</h1>
+    </div>
+    <div>
+        @using (Html.BeginForm("NeedNominals", "ATM", FormMethod.Get))
+        {
+            <div>
+                <p>Enter amount money.</p>
+                <input type="text" onkeypress='validate(event)' name="amount" required />
+            </div>
+            <br />
+            <div>
+                <p>
+                    <input type="submit" value="Withdrawal" />
+                </p>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        function validate(evt) {
+            var theEvent = evt || window.event;
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+            var regex = /[0-9]|\./;
+            if (!regex.test(key)) {
+                theEvent.returnValue = false;
+                if (theEvent.preventDefault) theEvent.preventDefault();
+            }
+        }
+    </script>
+}
+
